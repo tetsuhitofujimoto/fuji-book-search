@@ -1,0 +1,17 @@
+<h1>本検索</h1>
+<div class='content'>
+  <div id="search-box">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <div class="form-group" >
+        <%= f.text_field :keyword, class: "form-control" %>
+        <%= f.submit '気になる本を検索', class: "form-control btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div id='good_list'>
+  <% if @goods.present? %>
+  <h1>検索結果</h1>
+    <%= render "goods/good_list" %>
+  <% end %>
+</div>
