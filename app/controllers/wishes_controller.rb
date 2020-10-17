@@ -11,7 +11,7 @@ class WishesController < ApplicationController
   def destroy
     book =Book.find(params[:book_id])
     current_user.unwish(book)
-    flash[:success] = "欲しい本リストから解除しました。"
+    flash[:success] = "欲しい本リストから削除しました。"
     redirect_to request.referer
   end
 end
