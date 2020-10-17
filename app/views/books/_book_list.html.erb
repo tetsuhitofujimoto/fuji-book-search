@@ -15,7 +15,7 @@
           <% if current_user.wish_book?(book) %>
             <%= form_with(model: current_user.wishes.find_by(book_id: book.id), local: true, method: :delete) do |f| %>
             <%= hidden_field_tag :book_id, book.id %>
-            <%= f.submit '解除', class: 'btn btn-danger btn-sm' %>
+            <%= f.submit '欲しい本リストから削除', class: 'btn btn-danger btn-sm' %>
             <% end %>
           <% else %>
             <%= form_with(model: current_user.wishes.build, local: true) do |f| %>
