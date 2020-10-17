@@ -1,13 +1,5 @@
-<% if logged_in? %>
-  <div class="center jumbotron" style="margin:20px">
-    <div class="text-center">
-      <h1><%= link_to "自分の気になる本を探しますか？", search_path, class: 'btn btn-lg btn-success' %></h1>
-    </div>
-  </div>
-  
-  <h1>★欲しい本ランキング★</h1>
-  <% @all_ranks.each.with_index(1) do |book, i| %>
-    <h2>第<%= i %>位</h2>
+<div class="container">
+  <% @books.each do |book| %>
     <div class="border" style="margin:30px">
       <div class="row" style="padding:20px">
         <div class="col-sm-3">
@@ -35,13 +27,4 @@
       </div>
     </div>
   <% end %>
-<% else %>
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>ようこそ「本検索サービス」へ！</h1>
-    <h2>「本検索サービスの説明」</h2>
-    <p>自分が気になっている本を検索できます。<br>また、気になった本があれば欲しい本リストに追加できます。</p>
-    <%= link_to 'まずは、会員登録しましょう！', signup_path, class: 'btn btn-lg btn-primary' %>
-  </div>
 </div>
-<% end %>

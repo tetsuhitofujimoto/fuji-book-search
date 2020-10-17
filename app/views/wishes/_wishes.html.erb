@@ -1,0 +1,35 @@
+<ul class="list-unstyled">
+  <% wishes.each do |wish| %>
+    <li class="media mb-3">
+      <div class="media-body">
+        <div class="border" style="margin:30px">
+          <div class="row" style="padding:20px">
+            <div class="col-sm-3">
+              <p class="mb-0"><img src=<%= wish.image_url %> alt='' width=120 height=150 ></P>
+            </div>
+            <div class="col-sm-9">
+              <p>タイトル：<%= link_to wish.title, wish.item_url %></p>
+              <p>著者名：<%= wish.author %></p>
+              <p>出版社：<%= wish.publisher_name %></p>
+              <p>概要：<%= wish.item_caption %></p>
+            </div>
+            <div class="btn">
+              <% if current_user.wish_book?(wish) %>
+                <%= form_with(model: current_user.wishes.find_by(book_id: wish.id), local: true, method: :delete) do |f| %>
+                <%= hidden_field_tag :book_id, wish.id %>
+                <%= f.submit '欲しい本リストから削除', class: 'btn btn-danger btn-sm' %>
+              <% end %>
+              <% else %>
+                <%= form_with(model: current_user.wishes.build, local: true) do |f| %>
+                <%= hidden_field_tag :book_id, wish.id %>
+                <%= f.submit '欲しい本リストに追加', class: 'btn btn-primary btn-sm' %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate wishes %>
+</ul>

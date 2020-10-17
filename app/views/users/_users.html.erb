@@ -9,6 +9,11 @@
           </div>
           <div>
             <p><%= link_to 'プロフィール詳細', user_path(user) %></p>
+            <% if controller.action_name == "followers" && current_user.id == @user.id %>
+            <div class="btn">
+              <%= render 'relationships/follow_button', user: user %>
+            </div>
+            <% end %>
           </div>
         </div>
       </li>

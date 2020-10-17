@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_042556) do
+ActiveRecord::Schema.define(version: 2020_10_13_105638) do
+
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.string "publisher_name"
+    t.text "item_caption"
+    t.string "image_url"
+    t.string "item_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -30,6 +41,17 @@ ActiveRecord::Schema.define(version: 2020_10_03_042556) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "wishes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_wishes_on_book_id"
+    t.index ["user_id"], name: "index_wishes_on_user_id"
+  end
+
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
+  add_foreign_key "wishes", "books"
+  add_foreign_key "wishes", "users"
 end

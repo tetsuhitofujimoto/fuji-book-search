@@ -3,15 +3,15 @@
   <div id="search-box">
     <%= form_with url: search_path, method: :get, local: true do |f| %>
       <div class="form-group" >
-        <%= f.text_field :keyword, class: "form-control" %>
-        <%= f.submit '気になる本を検索', class: "form-control btn btn-success" %>
+        <%= f.text_field :title, class: "form-control", :placeholder => "本のタイトル" %>
+        <%= f.submit '検索', class: "form-control btn btn-success" %>
       </div>
     <% end %>
   </div>
 </div>
-<div id='good_list'>
-  <% if @goods.present? %>
+<div id='book_list'>
+  <% if @books.present? %>
   <h1>検索結果</h1>
-    <%= render "goods/good_list" %>
+    <%= render "books/book_list" %>
   <% end %>
 </div>

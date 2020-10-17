@@ -1,6 +1,0 @@
-<% @goods.each do |good| %>
-  <p>題名：<%= link_to good.title, good.item_url %></p>
-  <p>著者名：<%= good.author %></p>
-  <p>出版社：<%= good.publisher_name %></p>
-  <%= image_tag(good.medium_image_url) %>
-<% end %>
